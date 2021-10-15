@@ -1,0 +1,28 @@
+{
+	"name": "CognitiveService",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "CognitiveService",
+		"typeProperties": {
+			"subscriptionId": "530679ad-9ffd-4ae6-a38b-207c37db3e87",
+			"resourceGroup": "Synapse-AIAD-471731",
+			"csName": "cogs-471731",
+			"csKind": "CognitiveServices",
+			"csLocation": "southeastasia",
+			"endPoint": "https://cogs-471731.cognitiveservices.azure.com/",
+			"csKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "KeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "CognitiveKey"
+			}
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

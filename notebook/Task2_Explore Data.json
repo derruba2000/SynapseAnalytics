@@ -1,0 +1,189 @@
+{
+	"name": "Task2_Explore Data",
+	"properties": {
+		"folder": {
+			"name": "Task2"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "SparkPool01",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 1,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "1",
+				"spark.dynamicAllocation.maxExecutors": "1"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/530679ad-9ffd-4ae6-a38b-207c37db3e87/resourceGroups/Synapse-AIAD-471731/providers/Microsoft.Synapse/workspaces/asaworkspace471731/bigDataPools/SparkPool01",
+				"name": "SparkPool01",
+				"type": "Spark",
+				"endpoint": "https://asaworkspace471731.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/SparkPool01",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.1",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			}
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Load Directly from File\n",
+					""
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"diagram": {
+						"activateDiagramType": 2,
+						"chartConfig": {
+							"category": "bar",
+							"keys": [
+								"SaleKey"
+							],
+							"values": [
+								"Profit"
+							],
+							"yLabel": "Profit",
+							"xLabel": "SaleKey",
+							"aggregation": "SUM",
+							"aggByBackend": false,
+							"series": "CityKey",
+							"stacked": true,
+							"isValid": true,
+							"inValidMsg": null
+						},
+						"aggData": "{\"49036\":{\"228266\":0,\"228267\":0,\"228268\":0,\"228269\":0,\"228270\":0,\"228271\":0,\"228272\":0,\"228273\":136,\"228274\":114,\"228275\":25.5},\"75493\":{\"228266\":0,\"228267\":0,\"228268\":660,\"228269\":151.2,\"228270\":120,\"228271\":0,\"228272\":0,\"228273\":0,\"228274\":0,\"228275\":0},\"77447\":{\"228266\":68,\"228267\":68,\"228268\":0,\"228269\":0,\"228270\":0,\"228271\":0,\"228272\":0,\"228273\":0,\"228274\":0,\"228275\":0},\"92554\":{\"228266\":0,\"228267\":0,\"228268\":0,\"228269\":0,\"228270\":0,\"228271\":144,\"228272\":294,\"228273\":0,\"228274\":0,\"228275\":0}}",
+						"isSummary": false,
+						"previewData": {
+							"filter": null
+						},
+						"isSql": false
+					}
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"df = spark.read.load('abfss://wwi@asadatalake471731.dfs.core.windows.net/factsale-parquet/2012/Q1/InvoiceDateKey=2012-01-01/part-00007-e289b92c-fe69-489e-b68e-6399feb116fa.c000.snappy.parquet', format='parquet')\r\n",
+					"display(df.limit(10))"
+				],
+				"attachments": null,
+				"execution_count": 1
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## Load from CSV\n",
+					""
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"diagram": {
+						"activateDiagramType": 1,
+						"chartConfig": {
+							"category": "bar",
+							"keys": [
+								"SaleKey"
+							],
+							"values": [
+								"SaleKey"
+							],
+							"yLabel": "SaleKey",
+							"xLabel": "SaleKey",
+							"aggregation": "COUNT",
+							"aggByBackend": false
+						},
+						"aggData": "{\"SaleKey\":{\"1444678\":1,\"1444679\":1,\"1444680\":1,\"1444681\":1,\"1444682\":1,\"1444683\":1,\"1444684\":1,\"1444685\":1,\"1444686\":1,\"1444687\":1,\"1444688\":1,\"1444689\":1,\"1444690\":1,\"1444691\":1,\"1444692\":1,\"1444693\":1,\"1444694\":1,\"1444695\":1,\"1444696\":1,\"1444697\":1,\"1444698\":1,\"1444699\":1,\"1444700\":1,\"1444701\":1,\"1444702\":1,\"1444703\":1,\"1444704\":1,\"1444705\":1,\"1444706\":1,\"1444707\":1,\"1444708\":1,\"1444709\":1,\"1444710\":1,\"1444711\":1,\"1444712\":1,\"1444713\":1,\"1444714\":1,\"1444715\":1,\"1444716\":1,\"1444717\":1,\"1444718\":1,\"1444719\":1,\"1444720\":1,\"1444721\":1,\"1444722\":1,\"1444723\":1,\"1444724\":1,\"1444725\":1,\"1444726\":1,\"1444727\":1,\"1444728\":1,\"1444729\":1,\"1444730\":1,\"1444731\":1,\"1444732\":1,\"1444733\":1,\"1444734\":1,\"1444735\":1,\"1444736\":1,\"1444737\":1,\"1444738\":1,\"1444739\":1,\"1444740\":1,\"1444741\":1,\"1444742\":1,\"1444743\":1,\"1444744\":1,\"1444745\":1,\"1444746\":1,\"1444747\":1,\"1444748\":1,\"1444749\":1,\"1444750\":1,\"1444751\":1,\"1444752\":1,\"1444753\":1,\"1444754\":1,\"1444755\":1,\"1444756\":1,\"1444757\":1,\"1444758\":1,\"1444759\":1,\"1444760\":1,\"1444761\":1,\"1444762\":1,\"1444763\":1,\"1444764\":1,\"1444765\":1,\"1444766\":1,\"1444767\":1,\"1444768\":1,\"1444769\":1,\"1444770\":1,\"1444771\":1,\"1444772\":1,\"1444773\":1,\"1444774\":1,\"1444775\":1,\"1444776\":1,\"1444777\":1}}",
+						"isSummary": false,
+						"previewData": {
+							"filter": null
+						},
+						"isSql": false
+					}
+				},
+				"source": [
+					"data_path = spark.read.load(\n",
+					"   'abfss://wwi@asadatalake471731.dfs.core.windows.net/factsale-csv/2012/Q1/*/*',\n",
+					"   format='csv',\n",
+					"   sep=\"|\",\n",
+					"   header=True)\n",
+					"\n",
+					"display(data_path.limit(100))\n",
+					"\n",
+					""
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "markdown",
+				"source": [
+					"## 13. Config Spark "
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"diagram": {
+						"activateDiagramType": 1,
+						"chartConfig": {
+							"category": "bar",
+							"keys": [
+								"CityKey"
+							],
+							"values": [
+								"TotalQuantity"
+							],
+							"yLabel": "TotalQuantity",
+							"xLabel": "CityKey",
+							"aggregation": "SUM",
+							"aggByBackend": false
+						},
+						"aggData": "{\"TotalQuantity\":{\"44986\":328520,\"52715\":310361,\"62508\":329868,\"78038\":328874,\"81238\":328651,\"82686\":411209,\"95693\":345148,\"101061\":330250,\"110283\":306808,\"110541\":305994}}",
+						"isSummary": false,
+						"previewData": {
+							"filter": null
+						},
+						"isSql": true
+					}
+				},
+				"source": [
+					"%%sql\n",
+					"SELECT \n",
+					"    CityKey,\n",
+					"    SUM(Quantity) FILTER (WHERE CustomerKey != 0) as TotalQuantity,\n",
+					"    COUNT(DISTINCT StockItemKey) as UniqueItems\n",
+					"FROM delta.`abfss://wwi@asadatalake471731.dfs.core.windows.net/factsale-deltalake`\n",
+					"WHERE InvoiceYear=2012\n",
+					"    and InvoiceQuarter=1\n",
+					"GROUP BY CityKey\n",
+					"ORDER BY TotalQuantity desc\n",
+					"LIMIT 10\n",
+					"\n",
+					""
+				],
+				"execution_count": 2
+			}
+		]
+	}
+}

@@ -1,0 +1,20 @@
+{
+	"name": "Admin_03_user",
+	"properties": {
+		"folder": {
+			"name": "Admin"
+		},
+		"content": {
+			"query": "CREATE USER [asaworkspace471731] FROM EXTERNAL PROVIDER;\n\n--Granting permission to the identity\nGRANT CONTROL ON DATABASE::SQLPool01 TO [asaworkspace471731];",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SQLPool01",
+				"poolName": "SQLPool01"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

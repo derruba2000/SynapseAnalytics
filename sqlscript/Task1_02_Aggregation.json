@@ -1,0 +1,20 @@
+{
+	"name": "Task1_02_Aggregation",
+	"properties": {
+		"folder": {
+			"name": "Exercise_01/Task1"
+		},
+		"content": {
+			"query": "SELECT \n InvoiceYear,\n InvoiceQuarter,\n Sum(cast([Quantity] as int)) as SalesQuantity\nFROM\n    OPENROWSET(\n        BULK 'https://asadatalake471731.dfs.core.windows.net/wwi/factsale-deltalake',\n         FORMAT = 'DELTA'\n    ) AS [result]\nWHERE InvoiceYear=2012\nGROUP BY\n     InvoiceYear,\n     InvoiceQuarter",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SQLPool01",
+				"poolName": "SQLPool01"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
