@@ -1,6 +1,9 @@
 {
 	"name": "Task6_SentimentAnalysis",
 	"properties": {
+		"folder": {
+			"name": "Exercise05"
+		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
