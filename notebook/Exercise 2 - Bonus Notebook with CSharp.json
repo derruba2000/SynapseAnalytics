@@ -12,11 +12,17 @@
 			"driverCores": 4,
 			"executorMemory": "28g",
 			"executorCores": 4,
-			"numExecutors": 2
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2"
+			}
 		},
 		"metadata": {
+			"saveOutput": true,
 			"language_info": {
-				"name": "python"
+				"name": "csharp"
 			},
 			"a365ComputeOptions": {
 				"id": "/subscriptions/530679ad-9ffd-4ae6-a38b-207c37db3e87/resourceGroups/Synapse-AIAD-471731/providers/Microsoft.Synapse/workspaces/asaworkspace471731/bigDataPools/SparkPool01",
@@ -27,11 +33,13 @@
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
-				"sparkVersion": "2.4",
+				"sparkVersion": "3.1",
 				"nodeCount": 3,
 				"cores": 4,
-				"memory": 28
-			}
+				"memory": 28,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
 		},
 		"cells": [
 			{
@@ -40,7 +48,7 @@
 					"// Configure the connection to the data lake\n",
 					"var adlsPath = \"abfss://wwi@asadatalake471731.dfs.core.windows.net\";"
 				],
-				"execution_count": null
+				"execution_count": 1
 			},
 			{
 				"cell_type": "code",
@@ -50,7 +58,7 @@
 					"sales.Show(5);\n",
 					"sales.PrintSchema();"
 				],
-				"execution_count": null
+				"execution_count": 2
 			},
 			{
 				"cell_type": "code",
