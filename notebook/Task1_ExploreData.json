@@ -1,5 +1,5 @@
 {
-	"name": "Notebook 1",
+	"name": "Task1_ExploreData",
 	"properties": {
 		"folder": {
 			"name": "Exercise02"
@@ -56,16 +56,38 @@
 					"// Set the path to the ADLS Gen2 account\n",
 					"val adlsPath = \"abfss://wwi@asadatalake471731.dfs.core.windows.net\""
 				],
-				"execution_count": null
+				"execution_count": 1
 			},
 			{
 				"cell_type": "code",
 				"source": [
-					"%sh\n",
+					"%%spark\n",
 					"\n",
-					"ls /"
+					"// Read the sales into a dataframe\n",
+					"val sales = spark.read.format(\"csv\").option(\"header\", \"true\").option(\"inferSchema\", \"true\").option(\"sep\", \"|\").load(s\"$adlsPath/factsale-csv/2012/Q4\")\n",
+					"sales.show(5)\n",
+					"sales.printSchema()"
 				],
-				"execution_count": null
+				"execution_count": 5
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"%%spark\n",
+					"\n",
+					"// Import libraries for the SQL Analytics connector\n",
+					"import com.microsoft.spark.sqlanalytics.utils.Constants\n",
+					"import org.apache.spark.sql.SqlAnalyticsConnector._\n",
+					"import org.apache.spark.sql.SaveMode\n",
+					"\n",
+					"// Set target table name\n",
+					"var tableName = s\"SQLPool01.wwi_staging.Sale\"\n",
+					"\n",
+					"// Write the retrieved sales data into a staging table in Azure Synapse Analytics.\n",
+					"sales.limit(10000).write.mode(SaveMode.Append).sqlanalytics(tableName, Constants.INTERNAL)\n",
+					""
+				],
+				"execution_count": 6
 			}
 		]
 	}
