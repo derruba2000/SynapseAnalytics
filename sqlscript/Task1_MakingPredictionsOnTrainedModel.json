@@ -1,0 +1,20 @@
+{
+	"name": "Task1_MakingPredictionsOnTrainedModel",
+	"properties": {
+		"folder": {
+			"name": "Exercise_05"
+		},
+		"content": {
+			"query": "-- Retrieve the latest hex encoded ONNX model from the table\nDECLARE @model varbinary(max) = (SELECT Model FROM [wwi_ml].[MLModel] WHERE Id = (SELECT Top(1) max(ID) FROM [wwi_ml].[MLModel]));\n\n-- Run a prediction query\nSELECT d.*, p.*\nFROM PREDICT(MODEL = @model, DATA = [wwi].[SampleData] AS d, RUNTIME = ONNX) WITH (prediction real) AS p;\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SQLPool01",
+				"poolName": "SQLPool01"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
