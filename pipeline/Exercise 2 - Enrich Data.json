@@ -83,10 +83,24 @@
 					},
 					"sink": {
 						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						},
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
-					"enableStaging": false,
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "asadatalake01",
+							"type": "LinkedServiceReference"
+						},
+						"path": "staging",
+						"enableCompression": true
+					},
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
