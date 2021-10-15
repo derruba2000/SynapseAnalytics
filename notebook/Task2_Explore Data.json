@@ -2,7 +2,7 @@
 	"name": "Task2_Explore Data",
 	"properties": {
 		"folder": {
-			"name": "Task2"
+			"name": "Exercise01/Task2"
 		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -40,8 +40,9 @@
 				"nodeCount": 3,
 				"cores": 4,
 				"memory": 28,
-				"extraHeader": null
-			}
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
 		},
 		"cells": [
 			{
@@ -86,7 +87,6 @@
 					"df = spark.read.load('abfss://wwi@asadatalake471731.dfs.core.windows.net/factsale-parquet/2012/Q1/InvoiceDateKey=2012-01-01/part-00007-e289b92c-fe69-489e-b68e-6399feb116fa.c000.snappy.parquet', format='parquet')\r\n",
 					"display(df.limit(10))"
 				],
-				"attachments": null,
 				"execution_count": 1
 			},
 			{
